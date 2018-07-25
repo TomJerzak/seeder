@@ -1,7 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>dotnet-seeder</AssemblyName>
+    <PackageId>Seeder</PackageId>
+    <PackageType>DotnetCliTool</PackageType>
+    <StartupObject>Seeder.Program</StartupObject>
+
     <Authors>Tom Jerzak</Authors>
     <PackageTags>.net core, database, seed, seeder</PackageTags>
     <Description>Database seeder.</Description>

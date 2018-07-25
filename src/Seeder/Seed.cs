@@ -43,5 +43,10 @@ namespace Seeder
         {
             return $"{Assembly.GetExecutingAssembly().GetName().Name}_{Assembly.GetExecutingAssembly().GetName().Version}";
         }
+
+        public static Version GetVersion()
+        {
+            return Assembly.GetExecutingAssembly().GetName().Version;
+        }
     }
 }

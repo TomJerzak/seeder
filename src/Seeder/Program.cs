@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
 namespace Seeder
@@ -31,7 +32,7 @@ namespace Seeder
                     Console.WriteLine(Seed.GetVersion());
                 }
 
-                // TODO - help for scripts
+                // TODO: help for scripts
                 // if(IsScriptsHelpCommand(...))...
                 if (args[i].Equals("scripts") && (i + 1) == args.Length)
                 {
@@ -43,10 +44,7 @@ namespace Seeder
                     try
                     {
                         if (args[i++].Equals("add"))
-                        {
-                            Console.WriteLine(Seed.GenerateScriptName(args[i]));
-                            CommandWasExecuted();
-                        }
+                            CreateScript(args[i]);
                     }
                     catch (IndexOutOfRangeException)
                     {
@@ -54,6 +52,8 @@ namespace Seeder
                         CommandWasExecuted();
                     }
                 }
+
+                // TODO: dotnet seeder database update
             }
         }
 
@@ -88,6 +88,21 @@ namespace Seeder
         private static bool IsScriptsCommand(string argument)
         {
             return argument.Equals("scripts");
+        }
+
+        private static void CreateScript(string scriptName)
+        {
+            CommandWasExecuted();
+
+            scriptName = Seed.GenerateScriptName(scriptName);
+
+            if (!Directory.Exists("Seeds"))
+                Directory.CreateDirectory("Seeds");
+
+            using (var streamWriter = new StreamWriter(File.Create($"Seeds/{scriptName}.sql")))
+                streamWriter.WriteLine($"-- {Seed.GetProductVersion()} / {DateTime.Now}");
+
+            Console.WriteLine($"{scriptName} created.");
         }
     }
 }

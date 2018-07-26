@@ -1,4 +1,6 @@
-﻿using Npgsql;
+﻿using System.Collections.Generic;
+using System.IO;
+using Npgsql;
 
 namespace Seeder
 {
@@ -12,13 +14,33 @@ namespace Seeder
         private const string ProductVersion = "ProductVersion";
 
         private const string CreateSeedsHistoryTableQuery = "CREATE TABLE public.\"__SeedsHistory\" (\"SeedId\" varchar(150) NOT NULL, \"ProductVersion\" varchar(32) NOT NULL, CONSTRAINT \"PK___SeedsHistory\" PRIMARY KEY(\"SeedId\")) WITH(OIDS = FALSE);";
-
         private const string DropSeedsHistoryTableQuery = "DROP TABLE public.\"__SeedsHistory\"";
+
         private readonly string _connectionString;
 
         public SeedRepository(string connectionString)
         {
             _connectionString = connectionString;
+        }
+
+        public List<string> GetSeedsHistory()
+        {
+            var seedsHistory = new List<string>();
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "SELECT \"SeedId\" FROM public.\"__SeedsHistory\"";
+
+                    using (var reader = command.ExecuteReader())
+                        while (reader.Read())
+                            seedsHistory.Add(reader.GetString(0));
+                }
+            }
+
+            return seedsHistory;
         }
 
         public bool IsExistsSeedsHistory()
@@ -93,7 +115,7 @@ namespace Seeder
 
         public void RunScript(string seedId)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

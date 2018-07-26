@@ -14,7 +14,6 @@ namespace Seeder
 
         void AddToSeedsHistory(string seedId, string productVersion);
 
-        void RunScript(string seedId);
-        
+        void RunScript(string commandText);
     }
 }

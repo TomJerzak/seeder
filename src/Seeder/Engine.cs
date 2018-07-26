@@ -73,10 +73,11 @@ namespace Seeder
                     var files = new DirectoryInfo(StorageName).GetFiles();
                     foreach (var file in files)
                     {
-                        seedsFilesHistory.Add(file.Name);
-                        Console.WriteLine(file.Name);
-                        /*if (file.Extension.Equals("sql"))
-                            seedsFilesHistory.Add(file.Name);*/
+                        if (file.Extension.Equals(".sql"))
+                        {
+                            seedsFilesHistory.Add(file.Name.Replace(".sql", string.Empty));
+                            Console.WriteLine(file.Name);
+                        }
                     }
 
                     Console.WriteLine("\nList of changes:");
@@ -84,8 +85,12 @@ namespace Seeder
                     foreach (var seedId in listOfChanges)
                     {
                         Console.WriteLine(seedId);
-                        _seedRepository.AddToSeedsHistory(seedId, Seed.GetProductVersion());
-                        _seedRepository.RunScript(seedId);
+
+                        _seedRepository.AddToSeedsHistory(seedId.Replace(".sql", string.Empty), Seed.GetProductVersion());
+
+                        var fileStream = new FileStream($"{StorageName}/{seedId}.sql", FileMode.Open);
+                        using (var streamReader = new StreamReader(fileStream))
+                            _seedRepository.RunScript(streamReader.ReadToEnd());
                     }
                 }
             }

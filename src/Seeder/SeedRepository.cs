@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using Npgsql;
 
 namespace Seeder
@@ -114,9 +112,18 @@ namespace Seeder
             }
         }
 
-        public void RunScript(string seedId)
+        public void RunScript(string commandText)
         {
-            Console.WriteLine("RunScript method: NotImplemented.");
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = commandText;
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

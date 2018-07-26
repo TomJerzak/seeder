@@ -80,19 +80,24 @@ namespace Seeder
                         }
                     }
 
-                    Console.WriteLine("\nList of changes:");
-                    var listOfChanges = Seed.ListOfChanges(seedsHistory, seedsFilesHistory);
-                    foreach (var seedId in listOfChanges)
-                    {
-                        Console.WriteLine(seedId);
-
-                        _seedRepository.AddToSeedsHistory(seedId.Replace(".sql", string.Empty), Seed.GetProductVersion());
-
-                        var fileStream = new FileStream($"{StorageName}/{seedId}.sql", FileMode.Open);
-                        using (var streamReader = new StreamReader(fileStream))
-                            _seedRepository.RunScript(streamReader.ReadToEnd());
-                    }
+                    ExecuteChanges(seedsHistory, seedsFilesHistory);
                 }
+            }
+        }
+
+        private void ExecuteChanges(List<string> seedsHistory, List<string> seedsFilesHistory)
+        {
+            Console.WriteLine("\nList of changes:");
+            var listOfChanges = Seed.ListOfChanges(seedsHistory, seedsFilesHistory);
+            foreach (var seedId in listOfChanges)
+            {
+                Console.WriteLine(seedId);
+
+                _seedRepository.AddToSeedsHistory(seedId.Replace(".sql", string.Empty), Seed.GetProductVersion());
+
+                var fileStream = new FileStream($"{StorageName}/{seedId}.sql", FileMode.Open);
+                using (var streamReader = new StreamReader(fileStream))
+                    _seedRepository.RunScript(streamReader.ReadToEnd());
             }
         }
 

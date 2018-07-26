@@ -53,36 +53,50 @@ namespace Seeder
                 }
 
                 // TODO: dotnet seeder database update
-                if (args[i].Equals("database"))
+                if (args[i++].Equals("database"))
                 {
-                    _seedRepository = new SeedRepository(args[++i]);
-                    CommandWasExecuted();
-
-                    Console.WriteLine("\nSeeds:");
-                    var seedsHistory = new List<string>();
-                    if (_seedRepository.IsExistsSeedsHistory())
+                    if (args[i].Equals("update"))
                     {
-                        seedsHistory = _seedRepository.GetSeedsHistory();
-                        foreach (var seed in seedsHistory)
-                            Console.WriteLine(seed);
+                        _seedRepository = new SeedRepository(args[++i]);
+                        CommandWasExecuted();
+
+                        ExecuteChanges(GetSeedsHistory(), GetSeedsFilesHistory());
                     }
-
-                    var seedsFilesHistory = new List<string>();
-
-                    Console.WriteLine("\nFiles:");
-                    var files = new DirectoryInfo(StorageName).GetFiles();
-                    foreach (var file in files)
-                    {
-                        if (file.Extension.Equals(".sql"))
-                        {
-                            seedsFilesHistory.Add(file.Name.Replace(".sql", string.Empty));
-                            Console.WriteLine(file.Name);
-                        }
-                    }
-
-                    ExecuteChanges(seedsHistory, seedsFilesHistory);
                 }
             }
+        }
+
+        private static List<string> GetSeedsFilesHistory()
+        {
+            var seedsFilesHistory = new List<string>();
+
+            Console.WriteLine("\nFiles:");
+            var files = new DirectoryInfo(StorageName).GetFiles();
+            foreach (var file in files)
+            {
+                if (file.Extension.Equals(".sql"))
+                {
+                    seedsFilesHistory.Add(file.Name.Replace(".sql", string.Empty));
+                    Console.WriteLine(file.Name);
+                }
+            }
+
+            return seedsFilesHistory;
+        }
+
+        private List<string> GetSeedsHistory()
+        {
+            var seedsHistory = new List<string>();
+
+            Console.WriteLine("\nSeeds:");
+            if (_seedRepository.IsExistsSeedsHistory())
+            {
+                seedsHistory = _seedRepository.GetSeedsHistory();
+                foreach (var seed in seedsHistory)
+                    Console.WriteLine(seed);
+            }
+
+            return seedsHistory;
         }
 
         private void ExecuteChanges(List<string> seedsHistory, List<string> seedsFilesHistory)
@@ -106,12 +120,12 @@ namespace Seeder
             _commandWasExecuted = true;
         }
 
-        private bool IsVersionCommand(string argument)
+        private static bool IsVersionCommand(string argument)
         {
             return argument.Equals("--version");
         }
 
-        private bool IsScriptsCommand(string argument)
+        private static bool IsScriptsCommand(string argument)
         {
             return argument.Equals("scripts");
         }

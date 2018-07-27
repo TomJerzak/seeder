@@ -52,8 +52,14 @@ namespace Seeder
                     }
                 }
 
-                // TODO: dotnet seeder database update
-                if (args[i++].Equals("database"))
+                // TODO: help for database
+                // if(IsDatabasesHelpCommand(...))...
+                if (args[i].Equals("database") && (i + 1) == args.Length)
+                {
+                    CommandWasExecuted();
+                    Console.WriteLine("Help: TODO...");
+                }
+                else if (args[i++].Equals("database"))
                 {
                     if (args[i].Equals("update"))
                     {

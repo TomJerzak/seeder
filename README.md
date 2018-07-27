@@ -1,6 +1,11 @@
 # seeder
 Database seeder.
 
+### Add to project
+```
+<DotNetCliToolReference Include="Seeder" Version="1.0.4" />
+```
+
 ### Examples
 ```
 dotnet seeder --version

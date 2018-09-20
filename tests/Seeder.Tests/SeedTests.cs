@@ -12,7 +12,7 @@ namespace Seeder.Tests
         {
             var scriptName = Seed.GenerateScriptName("Script");
 
-            scriptName.Should().Contain($"{DateTime.Now.Year:0000}{DateTime.Now.Month:00}{DateTime.Now.Date:00}{DateTime.Now.Hour:00}{DateTime.Now.Minute:00}{DateTime.Now.Second:00}_");
+            scriptName.Should().Contain($"{DateTime.Now.Year:0000}{DateTime.Now.Month:00}{DateTime.Now.Day:00}{DateTime.Now.Hour:00}{DateTime.Now.Minute:00}{DateTime.Now.Second:00}_");
             scriptName.Should().Contain("_Script");
             scriptName.Length.Should().Be(22);
         }

@@ -113,11 +113,11 @@ namespace Seeder
             {
                 Console.WriteLine(seedId);
 
-                _seedRepository.AddToSeedsHistory(seedId.Replace(".sql", string.Empty), Seed.GetProductVersion());
-
                 var fileStream = new FileStream($"{StorageName}/{seedId}.sql", FileMode.Open);
                 using (var streamReader = new StreamReader(fileStream))
                     _seedRepository.RunScript(streamReader.ReadToEnd());
+
+                _seedRepository.AddToSeedsHistory(seedId.Replace(".sql", string.Empty), Seed.GetProductVersion());
             }
         }
 

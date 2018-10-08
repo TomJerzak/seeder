@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Npgsql;
-using Seeder.Core;
 
-namespace Seeder
+namespace Seeder.Core
 {
     public class SeedRepository : ISeedRepository
     {

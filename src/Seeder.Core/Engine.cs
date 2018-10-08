@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 namespace Seeder.Core
 {
@@ -13,17 +15,7 @@ namespace Seeder.Core
         {
             _seeder = seeder;
         }
-
-        public void UnknownCommandInformation()
-        {
-            Console.WriteLine(Constants.Command.Unknown);
-        }
-
-        public bool IsCommandExecuted()
-        {
-            return _commandWasExecuted;
-        }
-
+        
         public void Run(string[] args)
         {
             for (var i = 0; i < args.Length; i++)
@@ -31,7 +23,7 @@ namespace Seeder.Core
                 if (IsVersionCommand(args[i]))
                 {
                     CommandWasExecuted();
-                    Console.WriteLine(Seed.GetVersion());
+                    Console.WriteLine(GetVersion());
                 }
 
                 // TODO: help for scripts
@@ -76,6 +68,16 @@ namespace Seeder.Core
             }
         }
 
+        public void UnknownCommandInformation()
+        {
+            Console.WriteLine(Constants.Command.Unknown);
+        }
+
+        public bool IsCommandExecuted()
+        {
+            return _commandWasExecuted;
+        }
+
         private void CommandWasExecuted()
         {
             _commandWasExecuted = true;
@@ -91,19 +93,63 @@ namespace Seeder.Core
             return argument.Equals(Constants.Command.Scripts);
         }
 
-        private void CreateScript(string scriptName)
+        protected void CreateScript(string scriptName)
         {
             CommandWasExecuted();
 
-            scriptName = Seed.GenerateScriptName(scriptName);
+            scriptName = GenerateScriptName(scriptName);
 
             if (!Directory.Exists(Constants.StorageName))
                 Directory.CreateDirectory(Constants.StorageName);
 
             using (var streamWriter = new StreamWriter(File.Create($"Seeds/{scriptName}{Constants.SqlExtension}")))
-                streamWriter.WriteLine($"-- {Seed.GetProductVersion()} / {DateTime.Now}");
+                streamWriter.WriteLine($"-- {GetProductVersion()} / {DateTime.Now}");
 
             Console.WriteLine($"{scriptName} created.");
+        }
+
+        protected static string GenerateScriptName(string scriptName)
+        {
+            var dateTime = $"{DateTime.Now.Year:0000}{DateTime.Now.Month:00}{DateTime.Now.Day:00}{DateTime.Now.Hour:00}{DateTime.Now.Minute:00}{DateTime.Now.Second:00}_";
+
+            return $"{dateTime}_{scriptName}";
+        }
+
+        protected static List<string> SortScriptsByName(List<string> scripts)
+        {
+            scripts.Sort();
+
+            return scripts;
+        }
+
+        public static List<string> ListOfChanges(List<string> dbSourceScripts, List<string> codeSourceScripts)
+        {
+            codeSourceScripts = SortScriptsByName(codeSourceScripts);
+
+            foreach (var dbSourceScript in dbSourceScripts)
+            {
+                for (var i = 0; i < codeSourceScripts.Count; i++)
+                {
+                    if (dbSourceScript.Equals(codeSourceScripts[i]))
+                    {
+                        codeSourceScripts.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+
+            return codeSourceScripts;
+        }
+
+        public static string GetProductVersion()
+        {
+            // return $"{Assembly.GetExecutingAssembly().GetName().Name}_{Assembly.GetExecutingAssembly().GetName().Version}";
+            return "Seeder_1.0.7 | Seeder.Core_1.0.3";
+        }
+
+        public static Version GetVersion()
+        {
+            return Assembly.GetExecutingAssembly().GetName().Version;
         }
     }
 }

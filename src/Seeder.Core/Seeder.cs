@@ -8,7 +8,7 @@ namespace Seeder.Core
     {
         public void ExecuteChanges(ISeedRepository seedRepository)
         {            
-            var listOfChanges = Seed.ListOfChanges(GetSeedsHistory(seedRepository), GetSeedsFilesHistory());
+            var listOfChanges = Engine.ListOfChanges(GetSeedsHistory(seedRepository), GetSeedsFilesHistory());
 
             Console.WriteLine("\nList of changes:");
             foreach (var seedId in listOfChanges)
@@ -19,7 +19,7 @@ namespace Seeder.Core
                 using (var streamReader = new StreamReader(fileStream))
                     seedRepository.RunScript(streamReader.ReadToEnd());
 
-                seedRepository.AddToSeedsHistory(seedId.Replace(Constants.SqlExtension, string.Empty), Seed.GetProductVersion());
+                seedRepository.AddToSeedsHistory(seedId.Replace(Constants.SqlExtension, string.Empty), Engine.GetProductVersion());
             }
         }
 

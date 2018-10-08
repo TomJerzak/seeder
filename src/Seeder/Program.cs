@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Seeder.Core;
 
 namespace Seeder
@@ -25,7 +26,7 @@ namespace Seeder
         private static void ConsoleInformation()
         {
             Console.WriteLine("\n---------------------------------------------------");
-            Console.WriteLine($"| Database Seeder .NET Command-line Tools {Seed.GetVersion()} |");
+            Console.WriteLine($"| Database Seeder .NET Command-line Tools {Engine.GetVersion()} |");
             Console.WriteLine("---------------------------------------------------\n");
             Console.WriteLine("Usage: dotnet seeder [options] [command]\n");
             Console.WriteLine("Options:");

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Seeder
+namespace Seeder.Core
 {
     public interface ISeedRepository
     {

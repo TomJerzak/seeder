@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Tom Jerzak</Authors>
+    <Description>Database seeder library.</Description>
+    <PackageLicenseUrl>https://github.com/TomJerzak/seeder/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/TomJerzak/seeder</PackageProjectUrl>
+    <PackageTags>.net core, database, seed, seeder</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="4.0.2" />
+  </ItemGroup>
+
+</Project>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
+using Seeder.Core;
 using Xunit;
 
 namespace Seeder.Tests

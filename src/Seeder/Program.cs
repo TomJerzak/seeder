@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Seeder.Core;
 
 namespace Seeder
 {
@@ -13,7 +14,7 @@ namespace Seeder
                 return;
             }
 
-            var engine = new Engine();
+            var engine = new Engine(new Core.Seeder());
 
             engine.Run(args);
 

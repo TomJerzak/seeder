@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Seeder\Seeder.csproj" />
+    <ProjectReference Include="..\..\src\Seeder.Core\Seeder.Core.csproj" />
   </ItemGroup>
 
 </Project>

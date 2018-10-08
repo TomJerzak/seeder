@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Seeder
+namespace Seeder.Core
 {
     public class Seed
     {

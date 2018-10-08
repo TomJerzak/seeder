@@ -16,7 +16,7 @@ namespace Seeder.Core
 
         public void UnknownCommandInformation()
         {
-            Console.WriteLine(Constants.UnknownCommand);
+            Console.WriteLine(Constants.Command.Unknown);
         }
 
         public bool IsCommandExecuted()
@@ -36,7 +36,7 @@ namespace Seeder.Core
 
                 // TODO: help for scripts
                 // if(IsScriptsHelpCommand(...))...
-                if (args[i].Equals(Constants.CommandScripts) && (i + 1) == args.Length)
+                if (args[i].Equals(Constants.Command.Scripts) && (i + 1) == args.Length)
                 {
                     CommandWasExecuted();
                     Console.WriteLine("Help: TODO...");
@@ -46,7 +46,7 @@ namespace Seeder.Core
                     i++;
                     try
                     {
-                        if (args[i++].Equals(Constants.CommandScriptsAdd))
+                        if (args[i++].Equals(Constants.Command.ScriptsAdd))
                             CreateScript(args[i]);
                     }
                     catch (IndexOutOfRangeException)
@@ -58,14 +58,14 @@ namespace Seeder.Core
 
                 // TODO: help for database
                 // if(IsDatabasesHelpCommand(...))...
-                if (args[i].Equals(Constants.CommandDatabase) && (i + 1) == args.Length)
+                if (args[i].Equals(Constants.Command.Database) && (i + 1) == args.Length)
                 {
                     CommandWasExecuted();
                     Console.WriteLine("Help: TODO...");
                 }
-                else if (args[i++].Equals(Constants.CommandDatabase))
+                else if (args[i++].Equals(Constants.Command.Database))
                 {
-                    if (args[i].Equals(Constants.CommandDatabaseUpdate))
+                    if (args[i].Equals(Constants.Command.DatabaseUpdate))
                     {
                         ISeedRepository seedRepository = new SeedRepository(args[++i]);
                         CommandWasExecuted();
@@ -83,12 +83,12 @@ namespace Seeder.Core
 
         private static bool IsVersionCommand(string argument)
         {
-            return argument.Equals(Constants.CommandVersion);
+            return argument.Equals(Constants.Command.Version);
         }
 
         private static bool IsScriptsCommand(string argument)
         {
-            return argument.Equals(Constants.CommandScripts);
+            return argument.Equals(Constants.Command.Scripts);
         }
 
         private void CreateScript(string scriptName)

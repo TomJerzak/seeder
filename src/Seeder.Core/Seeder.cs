@@ -14,7 +14,12 @@ namespace Seeder.Core
             {
                 Console.WriteLine(seedId);
 
-                var fileStream = new FileStream($"{Constants.StorageName}/{seedId}.sql", FileMode.Open);
+                FileStream fileStream;
+                if (string.IsNullOrEmpty(pathToSeedsFilesHistory))
+                    fileStream = new FileStream($"{Constants.StorageName}/{seedId}.sql", FileMode.Open);
+                else
+                    fileStream = new FileStream($"{pathToSeedsFilesHistory}\\{Constants.StorageName}/{seedId}.sql", FileMode.Open);
+
                 using (var streamReader = new StreamReader(fileStream))
                     seedRepository.RunScript(streamReader.ReadToEnd());
 

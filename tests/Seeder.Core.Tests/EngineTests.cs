@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using Seeder.Core;
 using Xunit;
 
-namespace Seeder.Tests
+namespace Seeder.Core.Tests
 {
-    public class SeedTests
+    public class EngineTests
     {
         [Fact]
         public void generate_script_name()
         {
-            var scriptName = Seed.GenerateScriptName("Script");
+            var scriptName = EngineToTests.GenerateScriptName("Script");
 
             scriptName.Should().Contain($"{DateTime.Now.Year:0000}{DateTime.Now.Month:00}{DateTime.Now.Day:00}{DateTime.Now.Hour:00}{DateTime.Now.Minute:00}{DateTime.Now.Second:00}_");
             scriptName.Should().Contain("_Script");
@@ -28,7 +27,7 @@ namespace Seeder.Tests
                 "20180419182118_Script3"
             };
 
-            var result = Seed.SortScriptsByName(scripts);
+            var result = EngineToTests.SortScriptsByName(scripts);
 
             result[0].Should().Be("20180328133852_Script1");
             result[1].Should().Be("20180412101920_Script2");
@@ -50,7 +49,7 @@ namespace Seeder.Tests
                 "20180412101920_Script2"
             };
 
-            var result = Seed.ListOfChanges(dbSourceScripts, codeSourceScripts);
+            var result = EngineToTests.ListOfChanges(dbSourceScripts, codeSourceScripts);
 
             result.Should().HaveCount(2);
             result[0].Should().Be("20180412101920_Script2");
@@ -60,7 +59,7 @@ namespace Seeder.Tests
         [Fact]
         public void get_product_version()
         {
-            Seed.GetProductVersion().Should().Contain("Seeder_");
+            Engine.GetProductVersion().Should().Contain("Seeder_");
         }
     }
 }

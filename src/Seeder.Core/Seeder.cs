@@ -6,39 +6,30 @@ namespace Seeder.Core
 {
     public class Seeder : ISeeder
     {
-        public void ExecuteChanges(ISeedRepository seedRepository, string pathToSeedsFilesHistory = "")
+        public void ExecuteChanges(ISeedRepository seedRepository)
         {            
-            var listOfChanges = Seed.ListOfChanges(GetSeedsHistory(seedRepository), GetSeedsFilesHistory(pathToSeedsFilesHistory));
+            var listOfChanges = Seed.ListOfChanges(GetSeedsHistory(seedRepository), GetSeedsFilesHistory());
 
             Console.WriteLine("\nList of changes:");
             foreach (var seedId in listOfChanges)
             {
                 Console.WriteLine(seedId);
 
-                FileStream fileStream;
-                if (string.IsNullOrEmpty(pathToSeedsFilesHistory))
-                    fileStream = new FileStream($"{Constants.StorageName}/{seedId}.sql", FileMode.Open);
-                else
-                    fileStream = new FileStream($"{pathToSeedsFilesHistory}\\{Constants.StorageName}/{seedId}.sql", FileMode.Open);
-
+                var fileStream = new FileStream($"{Constants.StorageName}/{seedId}{Constants.SqlExtension}", FileMode.Open);
                 using (var streamReader = new StreamReader(fileStream))
                     seedRepository.RunScript(streamReader.ReadToEnd());
 
-                seedRepository.AddToSeedsHistory(seedId.Replace(".sql", string.Empty), Seed.GetProductVersion());
+                seedRepository.AddToSeedsHistory(seedId.Replace(Constants.SqlExtension, string.Empty), Seed.GetProductVersion());
             }
         }
 
-        private static List<string> GetSeedsFilesHistory(string pathToSeedsFilesHistory)
+        private static List<string> GetSeedsFilesHistory()
         {
             var seedsFilesHistory = new List<string>();
 
             Console.WriteLine("\nFiles:");
-            FileInfo[] files;
-            if (string.IsNullOrEmpty(pathToSeedsFilesHistory))
-                files = new DirectoryInfo(Constants.StorageName).GetFiles();
-            else
-                files = new DirectoryInfo($"{pathToSeedsFilesHistory}\\{Constants.StorageName}").GetFiles();
 
+            var files = new DirectoryInfo(Constants.StorageName).GetFiles();
             foreach (var file in files)
             {
                 if (file.Extension.Equals(Constants.SqlExtension))

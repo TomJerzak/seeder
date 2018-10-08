@@ -2,6 +2,6 @@
 {
     public interface ISeeder
     {
-        void ExecuteChanges(ISeedRepository seedRepository, string pathToSeedsFilesHistory = "");
+        void ExecuteChanges(ISeedRepository seedRepository);
     }
 }

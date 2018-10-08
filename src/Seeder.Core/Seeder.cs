@@ -7,9 +7,10 @@ namespace Seeder.Core
     public class Seeder : ISeeder
     {
         public void ExecuteChanges(ISeedRepository seedRepository, string pathToSeedsFilesHistory = "")
-        {
-            Console.WriteLine("\nList of changes:");
+        {            
             var listOfChanges = Seed.ListOfChanges(GetSeedsHistory(seedRepository), GetSeedsFilesHistory(pathToSeedsFilesHistory));
+
+            Console.WriteLine("\nList of changes:");
             foreach (var seedId in listOfChanges)
             {
                 Console.WriteLine(seedId);

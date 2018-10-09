@@ -144,12 +144,12 @@ namespace Seeder.Core
         public static string GetProductVersion()
         {
             // return $"{Assembly.GetExecutingAssembly().GetName().Name}_{Assembly.GetExecutingAssembly().GetName().Version}";
-            return "Seeder_1.0.7 | Seeder.Core_1.0.3";
+            return "Seeder_1.0.7 (Seeder.Core_1.0.3)";
         }
 
         public static Version GetVersion()
         {
             return Assembly.GetExecutingAssembly().GetName().Version;
-        }
+        }        
     }
 }

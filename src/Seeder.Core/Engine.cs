@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
+using System.Text;
 
 namespace Seeder.Core
 {
@@ -15,7 +15,7 @@ namespace Seeder.Core
         {
             _seeder = seeder;
         }
-        
+
         public void Run(string[] args)
         {
             for (var i = 0; i < args.Length; i++)
@@ -23,7 +23,7 @@ namespace Seeder.Core
                 if (IsVersionCommand(args[i]))
                 {
                     CommandWasExecuted();
-                    Console.WriteLine(GetVersion());
+                    Console.WriteLine($"{Constants.Seeder} {Constants.Version.SeederVersion} ({Constants.SeederCore} {Constants.Version.CoreVersion})");
                 }
 
                 // TODO: help for scripts
@@ -85,7 +85,7 @@ namespace Seeder.Core
 
         private static bool IsVersionCommand(string argument)
         {
-            return argument.Equals(Constants.Command.Version);
+            return argument.Equals(Constants.Command.VersionArgument);
         }
 
         private static bool IsScriptsCommand(string argument)
@@ -102,8 +102,8 @@ namespace Seeder.Core
             if (!Directory.Exists(Constants.StorageName))
                 Directory.CreateDirectory(Constants.StorageName);
 
-            using (var streamWriter = new StreamWriter(File.Create($"Seeds/{scriptName}{Constants.SqlExtension}")))
-                streamWriter.WriteLine($"-- {GetProductVersion()} / {DateTime.Now}");
+            using (var streamWriter = new StreamWriter(File.Create($"Seeds/{scriptName}{Constants.SqlExtension}"), Encoding.UTF8))
+                streamWriter.WriteLine($"-- {Constants.ProductVersion} / {DateTime.Now}");
 
             Console.WriteLine($"{scriptName} created.");
         }
@@ -140,16 +140,5 @@ namespace Seeder.Core
 
             return codeSourceScripts;
         }
-
-        public static string GetProductVersion()
-        {
-            // return $"{Assembly.GetExecutingAssembly().GetName().Name}_{Assembly.GetExecutingAssembly().GetName().Version}";
-            return "Seeder_1.0.7 (Seeder.Core_1.0.3)";
-        }
-
-        public static Version GetVersion()
-        {
-            return Assembly.GetExecutingAssembly().GetName().Version;
-        }        
     }
 }

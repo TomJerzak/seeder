@@ -23,14 +23,14 @@ namespace Seeder
         }
 
         private static void ConsoleInformation()
-        {            
+        {
             Console.WriteLine(@"  ____                _           ");
             Console.WriteLine(@" / ___|  ___  ___  __| | ___ _ __ ");
             Console.WriteLine(@" \___ \ / _ \/ _ \/ _` |/ _ \ '__|");
             Console.WriteLine(@"  ___) |  __/  __/ (_| |  __/ |   ");
             Console.WriteLine(@" |____/ \___|\___|\__,_|\___|_|   ");
             Console.WriteLine("\n---------------------------------------------------");
-            Console.WriteLine($"| Database Seeder .NET Command-line Tools {Engine.GetVersion()} |");
+            Console.WriteLine($"| Database Seeder .NET Command-line Tools {Constants.Version.SeederVersion} |");
             Console.WriteLine("---------------------------------------------------\n");
             Console.WriteLine("Usage: dotnet seeder [options] [command]\n");
             Console.WriteLine("Options:");

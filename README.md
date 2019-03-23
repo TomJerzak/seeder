@@ -3,7 +3,7 @@ Database seeder.
 
 ### Add to project
 ```
-<DotNetCliToolReference Include="Seeder" Version="1.0.6" />
+<DotNetCliToolReference Include="Seeder" Version="1.0.8" />
 ```
 
 ### Examples

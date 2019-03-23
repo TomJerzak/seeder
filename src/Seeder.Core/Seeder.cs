@@ -6,11 +6,16 @@ namespace Seeder.Core
 {
     public class Seeder : ISeeder
     {
+        const string NewLine = "\n";
+        const string ListOfChanges = "List of changes:";
+        const string Files = "Files:";
+        const string Seeds = "Seeds:";
+
         public void ExecuteChanges(ISeedRepository seedRepository)
         {            
             var listOfChanges = Engine.ListOfChanges(GetSeedsHistory(seedRepository), GetSeedsFilesHistory());
 
-            Console.WriteLine("\nList of changes:");
+            Console.WriteLine($"{NewLine}{ListOfChanges}");
             foreach (var seedId in listOfChanges)
             {
                 Console.WriteLine(seedId);
@@ -19,7 +24,7 @@ namespace Seeder.Core
                 using (var streamReader = new StreamReader(fileStream))
                     seedRepository.RunScript(streamReader.ReadToEnd());
 
-                seedRepository.AddToSeedsHistory(seedId.Replace(Constants.SqlExtension, string.Empty), Engine.GetProductVersion());
+                seedRepository.AddToSeedsHistory(seedId.Replace(Constants.SqlExtension, string.Empty), Constants.ProductVersion);
             }
         }
 
@@ -27,7 +32,7 @@ namespace Seeder.Core
         {
             var seedsFilesHistory = new List<string>();
 
-            Console.WriteLine("\nFiles:");
+            Console.WriteLine($"{NewLine}{Files}");
 
             var files = new DirectoryInfo(Constants.StorageName).GetFiles();
             foreach (var file in files)
@@ -46,7 +51,7 @@ namespace Seeder.Core
         {
             var seedsHistory = new List<string>();
 
-            Console.WriteLine("\nSeeds:");
+            Console.WriteLine($"{NewLine}{Seeds}");
             if (seedRepository.IsExistsSeedsHistory())
             {
                 seedsHistory = seedRepository.GetSeedsHistory();

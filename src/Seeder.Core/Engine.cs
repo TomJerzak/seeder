@@ -29,7 +29,7 @@ namespace Seeder.Core
                 if (IsProviderArgument(args[i]))
                 {
                     CommandWasExecuted();
-                    Console.WriteLine(string.Join(",", Constants.Providers));
+                    Console.WriteLine($"Available providers: {string.Join(", ", Constants.Providers)}");
                 }
 
                 // TODO: help for scripts
@@ -65,10 +65,21 @@ namespace Seeder.Core
                 {
                     if (args[i].Equals(Constants.Command.DatabaseUpdate))
                     {
-                        ISeedRepository seedRepository = new SeedRepository(args[++i]);
-                        CommandWasExecuted();
+                        var provider = args[++i];
+                        if (provider.Equals(Constants.Provider.Postgresql, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            ISeedRepository seedRepository = new SeedRepository(args[++i]);
+                            CommandWasExecuted();
 
-                        _seeder.ExecuteChanges(seedRepository);
+                            _seeder.ExecuteChanges(seedRepository);
+                        }
+                        else if (provider.Equals(Constants.Provider.Sqlite, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            ISeedRepository seedRepository = new SqliteRepository(args[++i]);
+                            CommandWasExecuted();
+
+                            _seeder.ExecuteChanges(seedRepository);
+                        }
                     }
                 }
             }

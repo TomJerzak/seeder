@@ -30,14 +30,14 @@ namespace Seeder.Core
 
         public static List<string> Providers = new List<string>()
         {
-            Provider.Postgresql,
-            Provider.Sqlite
+            Provider.PostgreSql,
+            Provider.SqLite
         };
 
         public static class Provider
         {
-            public const string Postgresql = "Postgresql";
-            public const string Sqlite = "Sqlite";
+            public const string PostgreSql = "Postgresql";
+            public const string SqLite = "Sqlite";
         }
 
     }

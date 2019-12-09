@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 
 namespace Seeder.Core
 {
-    public class SqliteRepository : ISeedRepository
+    public class SqLiteRepository : ISeedRepository
     {
-        private const string Schema = "schema";
         private const string Table = "table";
-        private const string Public = "public";
         private const string SeedsHistory = "__SeedsHistory";
         private const string SeedId = "SeedId";
         private const string ProductVersion = "ProductVersion";
@@ -18,7 +15,7 @@ namespace Seeder.Core
 
         private readonly string _connectionString;
 
-        public SqliteRepository(string connectionString)
+        public SqLiteRepository(string connectionString)
         {
             _connectionString = connectionString;
         }

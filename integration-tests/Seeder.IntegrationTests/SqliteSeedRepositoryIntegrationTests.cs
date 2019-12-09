@@ -11,7 +11,7 @@ namespace Seeder.IntegrationTests
         [Fact]
         public void get_all_seeds()
         {
-            ISeedRepository seedRepository = new SqliteRepository(_connectionString);
+            ISeedRepository seedRepository = new SqLiteRepository(_connectionString);
 
             seedRepository.AddToSeedsHistory("Test1", "1.0");
             seedRepository.AddToSeedsHistory("Test2", "1.0");
@@ -23,7 +23,7 @@ namespace Seeder.IntegrationTests
         [Fact]
         public void seeds_history_table_not_exists()
         {
-            ISeedRepository seedRepository = new SqliteRepository(_connectionString);
+            ISeedRepository seedRepository = new SqLiteRepository(_connectionString);
 
             seedRepository.IsExistsSeedsHistory().Should().BeFalse();
         }
@@ -31,7 +31,7 @@ namespace Seeder.IntegrationTests
         [Fact]
         public void seeds_history_table_is_exists()
         {
-            ISeedRepository seedRepository = new SqliteRepository(_connectionString);
+            ISeedRepository seedRepository = new SqLiteRepository(_connectionString);
             seedRepository.CreateSeedsHistory();
 
             seedRepository.IsExistsSeedsHistory().Should().BeTrue();
@@ -41,7 +41,7 @@ namespace Seeder.IntegrationTests
         [Fact]
         public void insert_with_creating_table()
         {
-            ISeedRepository seedRepository = new SqliteRepository(_connectionString);
+            ISeedRepository seedRepository = new SqLiteRepository(_connectionString);
 
             seedRepository.AddToSeedsHistory("Test", "1.0");
 

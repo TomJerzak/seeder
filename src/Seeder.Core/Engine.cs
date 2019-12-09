@@ -66,16 +66,16 @@ namespace Seeder.Core
                     if (args[i].Equals(Constants.Command.DatabaseUpdate))
                     {
                         var provider = args[++i];
-                        if (provider.Equals(Constants.Provider.Postgresql, StringComparison.InvariantCultureIgnoreCase))
+                        if (provider.Equals(Constants.Provider.PostgreSql, StringComparison.InvariantCultureIgnoreCase))
                         {
                             ISeedRepository seedRepository = new SeedRepository(args[++i]);
                             CommandWasExecuted();
 
                             _seeder.ExecuteChanges(seedRepository);
                         }
-                        else if (provider.Equals(Constants.Provider.Sqlite, StringComparison.InvariantCultureIgnoreCase))
+                        else if (provider.Equals(Constants.Provider.SqLite, StringComparison.InvariantCultureIgnoreCase))
                         {
-                            ISeedRepository seedRepository = new SqliteRepository(args[++i]);
+                            ISeedRepository seedRepository = new SqLiteRepository(args[++i]);
                             CommandWasExecuted();
 
                             _seeder.ExecuteChanges(seedRepository);

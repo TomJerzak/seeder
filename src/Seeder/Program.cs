@@ -35,7 +35,7 @@ namespace Seeder
             Console.WriteLine("Usage: dotnet seeder [options] [command]\n");
             Console.WriteLine("Options:");
             Console.WriteLine("--version     Show version information.\n");
-            Console.WriteLine("--provider     Show version information.\n");
+            Console.WriteLine("--provider    Show version information.\n");
             Console.WriteLine("Commands:");
             Console.WriteLine("scripts  Commands to manage scripts.\n");
             Console.WriteLine("database Commands to manage the database.\n");

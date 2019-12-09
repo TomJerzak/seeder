@@ -26,6 +26,12 @@ namespace Seeder.Core
                     Console.WriteLine($"{Constants.Seeder} {Constants.Version.SeederVersion} ({Constants.SeederCore} {Constants.Version.CoreVersion})");
                 }
 
+                if (IsProviderArgument(args[i]))
+                {
+                    CommandWasExecuted();
+                    Console.WriteLine(string.Join(",", Constants.Providers));
+                }
+
                 // TODO: help for scripts
                 // if(IsScriptsHelpCommand(...))...
                 if (args[i].Equals(Constants.Command.Scripts) && (i + 1) == args.Length)
@@ -86,6 +92,11 @@ namespace Seeder.Core
         private static bool IsVersionCommand(string argument)
         {
             return argument.Equals(Constants.Command.VersionArgument);
+        }
+
+        private static bool IsProviderArgument(string argument)
+        {
+            return argument.Equals(Constants.Command.ProviderArgument);
         }
 
         private static bool IsScriptsCommand(string argument)

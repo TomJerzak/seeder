@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Seeder.Core;
+using Seeder.Core.Repositories;
 using Xunit;
 
 namespace Seeder.IntegrationTests

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 
-namespace Seeder.Core
+namespace Seeder.Core.Repositories
 {
     public class SqLiteRepository : ISeedRepository
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Seeder.Core.Repositories;
 
 namespace Seeder.Core
 {
@@ -68,7 +69,7 @@ namespace Seeder.Core
                         var provider = args[++i];
                         if (provider.Equals(Constants.Provider.PostgreSql, StringComparison.InvariantCultureIgnoreCase))
                         {
-                            ISeedRepository seedRepository = new SeedRepository(args[++i]);
+                            ISeedRepository seedRepository = new PostgreSqlRepository(args[++i]);
                             CommandWasExecuted();
 
                             _seeder.ExecuteChanges(seedRepository);

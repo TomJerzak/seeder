@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Npgsql;
 
-namespace Seeder.Core
+namespace Seeder.Core.Repositories
 {
-    public class SeedRepository : ISeedRepository
+    public class PostgreSqlRepository : ISeedRepository
     {
         private const string Schema = "schema";
         private const string Table = "table";
@@ -17,7 +17,7 @@ namespace Seeder.Core
 
         private readonly string _connectionString;
 
-        public SeedRepository(string connectionString)
+        public PostgreSqlRepository(string connectionString)
         {
             _connectionString = connectionString;
         }

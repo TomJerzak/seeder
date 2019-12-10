@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Seeder.IntegrationTests
 {
-    public class SeedRepositoryIntegrationTests
+    public class PostgreSqlRepositoryIntegrationTests
     {
         private string _connectionString = "User ID=seeder;Password=seeder;Host=127.0.0.1;Port=5432;Database=seeder;Pooling=true;";
 

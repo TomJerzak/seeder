@@ -19,7 +19,7 @@ namespace Seeder
             engine.Run(args);
 
             if (!engine.IsCommandExecuted())
-                engine.UnknownCommandInformation();
+                Engine.UnknownCommandInformation();
         }
 
         private static void ConsoleInformation()
@@ -35,7 +35,7 @@ namespace Seeder
             Console.WriteLine("Usage: dotnet seeder [options] [command]\n");
             Console.WriteLine("Options:");
             Console.WriteLine("--version     Show version information.");
-            Console.WriteLine("--provider    Show version information.\n");
+            Console.WriteLine("--provider    Display available database providers.\n");
             Console.WriteLine("Commands:");
             Console.WriteLine("scripts  Commands to manage scripts.\n");
             Console.WriteLine("database Commands to manage the database.\n");

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Seeder" Version="1.0.9" />
+    <DotNetCliToolReference Include="Seeder" Version="1.0.10" />
   </ItemGroup>
 
 </Project>

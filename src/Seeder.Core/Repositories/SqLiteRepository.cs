@@ -61,9 +61,9 @@ namespace Seeder.Core.Repositories
 
             return false;
         }
+
         public void CreateSeedsHistory()
         {
-
             using (var connection = new SqliteConnection(_connectionString))
             {
                 connection.Open();
@@ -78,7 +78,6 @@ namespace Seeder.Core.Repositories
 
         public void DeleteSeedsHistory()
         {
-
             using (var connection = new SqliteConnection(_connectionString))
             {
                 connection.Open();

@@ -23,12 +23,12 @@ namespace Seeder.Core
 
         public static class Version
         {
-            public const string SeederVersion = "1.0.9";
+            public const string SeederVersion = "1.0.10";
 
-            public const string CoreVersion = "1.0.5";
+            public const string CoreVersion = "1.0.6";
         }
 
-        public static List<string> Providers = new List<string>()
+        public static readonly List<string> Providers = new List<string>()
         {
             Provider.PostgreSql,
             Provider.SqLite
@@ -36,8 +36,8 @@ namespace Seeder.Core
 
         public static class Provider
         {
-            public const string PostgreSql = "Postgresql";
-            public const string SqLite = "Sqlite";
+            public const string PostgreSql = "PostgreSQL";
+            public const string SqLite = "SQLite";
         }
 
     }

@@ -64,29 +64,32 @@ namespace Seeder.Core
                 }
                 else if (args[i++].Equals(Constants.Command.Database))
                 {
-                    if (args[i].Equals(Constants.Command.DatabaseUpdate))
+                    if (args[i++].Equals(Constants.Command.DatabaseUpdate))
                     {
-                        var provider = args[++i];
-                        if (provider.Equals(Constants.Provider.PostgreSql, StringComparison.InvariantCultureIgnoreCase))
+                        if (args[i++].Equals(Constants.Command.ProviderArgument))
                         {
-                            ISeedRepository seedRepository = new PostgreSqlRepository(args[++i]);
-                            CommandWasExecuted();
+                            var provider = args[i++];
+                            if (provider.Equals(Constants.Provider.PostgreSql, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                ISeedRepository seedRepository = new PostgreSqlRepository(args[i]);
+                                CommandWasExecuted();
 
-                            _seeder.ExecuteChanges(seedRepository);
-                        }
-                        else if (provider.Equals(Constants.Provider.SqLite, StringComparison.InvariantCultureIgnoreCase))
-                        {
-                            ISeedRepository seedRepository = new SqLiteRepository(args[++i]);
-                            CommandWasExecuted();
+                                _seeder.ExecuteChanges(seedRepository);
+                            }
+                            else if (provider.Equals(Constants.Provider.SqLite, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                ISeedRepository seedRepository = new SqLiteRepository(args[i]);
+                                CommandWasExecuted();
 
-                            _seeder.ExecuteChanges(seedRepository);
+                                _seeder.ExecuteChanges(seedRepository);
+                            }
                         }
                     }
                 }
             }
         }
 
-        public void UnknownCommandInformation()
+        public static void UnknownCommandInformation()
         {
             Console.WriteLine(Constants.Command.Unknown);
         }

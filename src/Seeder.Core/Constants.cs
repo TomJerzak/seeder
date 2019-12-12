@@ -23,9 +23,9 @@ namespace Seeder.Core
 
         public static class Version
         {
-            public const string SeederVersion = "1.0.10";
+            public const string SeederVersion = "1.0.11";
 
-            public const string CoreVersion = "1.0.6";
+            public const string CoreVersion = "1.0.7";
         }
 
         public static readonly List<string> Providers = new List<string>()

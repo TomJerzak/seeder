@@ -65,5 +65,13 @@ namespace Seeder.Core.Tests
         {
             Constants.ProductVersion.Should().Contain("Seeder_");
         }
+
+        [Fact]
+        public void get_available_providers()
+        {
+            Constants.Providers.Should().HaveCount(2);
+            Constants.Providers[0].Should().Be("PostgreSQL");
+            Constants.Providers[1].Should().Be("SQLite");
+        }
     }
 }

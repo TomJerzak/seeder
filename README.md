@@ -5,7 +5,7 @@ Database seeder for PostgreSQL, SQLite.
 ## Add to project
 
 ```bash
-<DotNetCliToolReference Include="Seeder" Version="1.0.9" />
+<DotNetCliToolReference Include="Seeder" Version="1.0.12" />
 ```
 
 ## Examples

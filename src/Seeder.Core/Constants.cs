@@ -5,7 +5,7 @@ namespace Seeder.Core
     public static class Constants
     {
         public const string Seeder = "Seeder";
-        public const string SeederCore = "Seeder.Core";
+        public const string SeederCore = "Core";
         public const string ProductVersion = Seeder + "_" + Version.SeederVersion + " (" + SeederCore + "_" + Version.CoreVersion + ")";
         public const string StorageName = "Seeds";
         public const string SqlExtension = ".sql";
@@ -23,9 +23,9 @@ namespace Seeder.Core
 
         public static class Version
         {
-            public const string SeederVersion = "1.0.11";
+            public const string SeederVersion = "1.0.12";
 
-            public const string CoreVersion = "1.0.7";
+            public const string CoreVersion = "1.0.8";
         }
 
         public static readonly List<string> Providers = new List<string>()

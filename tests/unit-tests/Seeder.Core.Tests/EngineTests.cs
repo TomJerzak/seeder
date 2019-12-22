@@ -63,7 +63,7 @@ namespace Seeder.Core.Tests
         [Fact]
         public void get_product_version()
         {
-            Constants.ProductVersion.Should().Contain("Seeder_");
+            Constants.ProductVersion.Should().Contain("Seeder_1.0.12 (Core_1.0.8)");
         }
 
         [Fact]

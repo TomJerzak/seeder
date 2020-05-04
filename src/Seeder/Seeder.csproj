@@ -2,11 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <AssemblyName>dotnet-seeder</AssemblyName>
-    <PackageId>Seeder</PackageId>
-    <PackageType>DotnetCliTool</PackageType>
-    <StartupObject>Seeder.Program</StartupObject>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <Authors>Tom Jerzak</Authors>
     <PackageTags>.net core, database, seed, seeder</PackageTags>
@@ -14,12 +10,14 @@
     <RepositoryUrl>https://github.com/TomJerzak/seeder</RepositoryUrl>
     <PackageProjectUrl>https://github.com/TomJerzak/seeder</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/TomJerzak/seeder/blob/master/LICENSE</PackageLicenseUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.12</Version>
-    <PackageVersion>1.0.12</PackageVersion>
+    <Version>1.0.14</Version>
+    <PackageVersion>1.0.14</PackageVersion>
     <Title>Seeder</Title>
     <Copyright>Tom Jerzak</Copyright>
+
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>seeder</ToolCommandName>
   </PropertyGroup>
 
   <ItemGroup>

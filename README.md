@@ -2,10 +2,10 @@
 
 Database seeder for PostgreSQL, SQLite.
 
-## Add to project
+## Installing the tools
 
 ```bash
-<DotNetCliToolReference Include="Seeder" Version="1.0.12" />
+dotnet tool install --global seeder
 ```
 
 ## Examples

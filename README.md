@@ -17,31 +17,31 @@ Seeder can be used from the command line or inside the project.
 - Extension version
 
 ```bash
-dotnet seeder --version
+seeder --version
 ```
 
 - Available providers
 
 ```bash
-dotnet seeder --provider
+seeder --provider
 ```
 
 - Create sql script
 
 ```bash
-dotnet seeder scripts add ScriptName
+seeder scripts add ScriptName
 ```
 
 - Database update for PostgreSQL
 
 ```bash
-dotnet seeder database update --provider PostgreSQL "User ID=seeder;Password=seeder;Host=127.0.0.1;Port=5432;Database=seeder;Pooling=true;"
+seeder database update --provider PostgreSQL "User ID=seeder;Password=seeder;Host=127.0.0.1;Port=5432;Database=seeder;Pooling=true;"
 ```
 
 - Database update for SQLite
 
 ```bash
-dotnet seeder database update --provider SQLite "Data Source=C:\temp\seeder.db;"
+seeder database update --provider SQLite "Data Source=C:\temp\seeder.db;"
 ```
 
 ### Project

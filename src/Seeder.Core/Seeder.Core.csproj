@@ -9,7 +9,7 @@
     <PackageLicenseUrl>https://github.com/TomJerzak/seeder/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/TomJerzak/seeder</PackageProjectUrl>
     <PackageTags>.net core, database, seed, seeder</PackageTags>
-    <Version>1.0.10</Version>
+    <Version>1.0.11</Version>
     <PackageVersion>1.0.10</PackageVersion>
     <Title>Seeder.Core</Title>
     <Copyright>Tom Jerzak</Copyright>
@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.3" />
-    <PackageReference Include="Npgsql" Version="4.1.3.1" />
+    <PackageReference Include="Npgsql" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

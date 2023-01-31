@@ -11,8 +11,8 @@
     <PackageProjectUrl>https://github.com/TomJerzak/seeder</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/TomJerzak/seeder/blob/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.14</Version>
-    <PackageVersion>1.0.14</PackageVersion>
+    <Version>1.0.15</Version>
+    <PackageVersion>1.0.15</PackageVersion>
     <Title>Seeder</Title>
     <Copyright>Tom Jerzak</Copyright>
 
